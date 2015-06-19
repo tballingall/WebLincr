@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - db/**/*
+    - bin/**/*
+    - test/**/*
+    - config/environments/*
+    - config/initializers/*
+    - config/application.rb
+    - bin/setup
+    - Rakefile
