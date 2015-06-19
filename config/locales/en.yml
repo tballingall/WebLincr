@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  title: "Weblincr Homepage"
+  title: Weblincr
+  pages:
+    homepage:
+      title: Weblincr Homepage
+      content: I am some homepage content!
