@@ -14,6 +14,7 @@ RSpec.describe User, type: :model do
   let(:password_confirmation) { 'password' }
 
   it { expect(user).to be_valid }
+  it { expect(create(:user)).to be_valid }
 
   describe 'associations' do
   end
@@ -22,9 +23,50 @@ RSpec.describe User, type: :model do
   end
 
   describe 'class methods' do
+    describe '.null_user' do
+      it 'returns a null user duck' do
+        expect(User.null_user).to respond_to :id
+        expect(User.null_user.id).to eq nil
+        expect(User.null_user.email).to eq nil
+        expect(User.null_user.username).to eq nil
+        expect(User.null_user.authenticate('anything')).to eq false
+      end
+    end
   end
 
   describe 'finders' do
+    describe '.find_by_email' do
+      context 'given users exist' do
+        before do
+          user.save!
+          create(:user)
+        end
+
+        it 'finds the correct user by email' do
+          expect(User.find_by_email(user.email)).to eq user
+        end
+      end
+
+      it 'returns a null user if no user is found' do
+        expect(User.current_user('invalid')).to be_a User::NullUser
+      end
+    end
+
+    describe '.current_user' do
+      context 'given a user exists' do
+        before do
+          user.save!
+        end
+
+        it 'returns the correct user' do
+          expect(User.current_user(user.id)).to eq user
+        end
+      end
+
+      it 'returns a null user if no user is found' do
+        expect(User.current_user('invalid')).to be_a User::NullUser
+      end
+    end
   end
 
   describe 'instance methods' do

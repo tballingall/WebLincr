@@ -2,18 +2,27 @@ en:
   title: Weblincr
   pages:
     homepage:
-      title: Weblincr Homepage
       content: I am some homepage content!
+      title: Weblincr Homepage
   user:
     errors:
-      intro: ' prohibited this user from being saved:'
       email: 'is an invalid email address.'
+      intro: ' prohibited this user from being saved:'
+      login: The user doesn't exist or the password is incorrect
     fields:
       email: Email
+      login: Log In
       password: Password
       password_confirmation: Repeat Password
       submit: Sign Up
+    login:
+      link: Log In
+      success: You have logged in successfully
+      title: Log in to Weblincr
+    logout:
+      link: Log Out
+      success: You're logged out
     sign_up:
       link: Sign Up
-      title: 'Sign up for a new account:'
       success: User created!
+      title: 'Sign up for a new account:'

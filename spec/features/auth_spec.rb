@@ -51,7 +51,7 @@ RSpec.feature 'Credentialing', speed: 'slow' do
       scenario 'allows me to log out' do
         visit root_url
         click_link I18n.t('user.logout.link')
-        expect(page).to have_content I18n.t('user.logout.link')
+        expect(page).to have_content I18n.t('user.login.link')
       end
     end
   end

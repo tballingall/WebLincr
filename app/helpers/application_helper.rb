@@ -18,7 +18,18 @@ module ApplicationHelper
   # @return [string]
   #
   def nav_item_registration
-    content_tag :li, registration_link
+    return content_tag :li, registration_link unless current_user?
+    ''
+  end
+
+  # query: Main nav item for session links
+  #
+  # Returns an anchor element wrapped in a list item
+  #
+  # @return [string]
+  #
+  def nav_item_session
+    content_tag(:li, session_link)
   end
 
   private
@@ -41,5 +52,10 @@ module ApplicationHelper
 
   def registration_link
     link_to(I18n.t('user.sign_up.link'), new_user_path)
+  end
+
+  def session_link
+    return link_to(I18n.t('user.logout.link'), log_out_path) if current_user?
+    link_to(I18n.t('user.login.link'), log_in_path)
   end
 end
