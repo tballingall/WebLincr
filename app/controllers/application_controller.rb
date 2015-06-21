@@ -19,8 +19,15 @@ class ApplicationController < ActionController::Base
   #
   # @return [Boolean]
   #
-  def current_user?
+  def logged_in?
     current_user.id.present?
+  end
+  helper_method :logged_in?
+
+  def current_user?(user)
+    return false if user.nil?
+    return false if user.is_a?(User::NullUser)
+    current_user == user
   end
   helper_method :current_user?
 end

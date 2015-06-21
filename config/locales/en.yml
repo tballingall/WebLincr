@@ -1,4 +1,6 @@
 en:
+  access:
+    denied: You can't do that!
   title: Weblincr
   pages:
     homepage:
@@ -26,3 +28,8 @@ en:
       link: Sign Up
       success: User created!
       title: 'Sign up for a new account:'
+    profile:
+      edit_title: Edit Your Profile
+      edit_link: Edit your profile
+      update_button: Update your info
+      success: Your profile has been updated

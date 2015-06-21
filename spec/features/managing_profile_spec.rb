@@ -28,6 +28,18 @@ RSpec.feature 'Credentialing', speed: 'slow' do
       expect(page).to have_content new_email
     end
 
+    context 'given bad data' do
+      let(:bad_email) { 'bad.email'}
+      scenario 'I see errors' do
+        visit edit_user_path(user)
+        within('#edit-user') do
+          fill_in 'user_email', with: bad_email
+        end
+        click_button I18n.t('user.profile.update_button')
+        expect(page).to have_content I18n.t('user.errors.intro')
+      end
+    end
+
     scenario 'I can not edit other user information' do
       visit user_path(other_user)
       expect(page).to_not have_link I18n.t('user.profile.edit_link')

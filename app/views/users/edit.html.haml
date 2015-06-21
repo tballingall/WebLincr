@@ -1,0 +1,9 @@
+%h2= t('user.profile.edit_title')
+#edit-user
+  = form_for @user do |f|
+    = display_any_errors_for(model: @user, text: t('user.errors.intro'))
+    .field
+      = f.label :email, t('user.fields.email')
+      = f.text_field :email
+    .actions
+      = f.submit t('user.profile.update_button')

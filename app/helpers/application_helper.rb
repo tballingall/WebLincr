@@ -18,7 +18,7 @@ module ApplicationHelper
   # @return [string]
   #
   def nav_item_registration
-    return content_tag :li, registration_link unless current_user?
+    return content_tag :li, registration_link unless logged_in?
     ''
   end
 
@@ -55,7 +55,7 @@ module ApplicationHelper
   end
 
   def session_link
-    return link_to(I18n.t('user.logout.link'), log_out_path) if current_user?
+    return link_to(I18n.t('user.logout.link'), log_out_path) if logged_in?
     link_to(I18n.t('user.login.link'), log_in_path)
   end
 end
