@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   before_action :require_login, only: [:edit, :update]
   before_action :ensure_current_user, only: [:edit, :update]
 
+  def index
+    @users = User.paginate(page: params[:page])
+  end
+
   def show
     @user = user
   end

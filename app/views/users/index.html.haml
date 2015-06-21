@@ -1,0 +1,5 @@
+= t('user.index_title')
+= will_paginate @users
+%ul
+  - @users.each do |user|
+    %li= link_to user.email, user

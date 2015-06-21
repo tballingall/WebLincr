@@ -29,7 +29,7 @@ RSpec.feature 'Credentialing', speed: 'slow' do
     end
 
     context 'given bad data' do
-      let(:bad_email) { 'bad.email'}
+      let(:bad_email) { 'bad.email' }
       scenario 'I see errors' do
         visit edit_user_path(user)
         within('#edit-user') do

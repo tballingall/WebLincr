@@ -17,6 +17,7 @@ en:
       password: Password
       password_confirmation: Repeat Password
       submit: Sign Up
+    index_title: Users of Weblincr
     login:
       link: Log In
       success: You have logged in successfully
@@ -33,3 +34,4 @@ en:
       edit_link: Edit your profile
       update_button: Update your info
       success: Your profile has been updated
+      title: "Profile for %{email}"

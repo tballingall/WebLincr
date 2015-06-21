@@ -67,6 +67,12 @@ RSpec.describe User, type: :model do
         expect(User.current_user('invalid')).to be_a User::NullUser
       end
     end
+
+    describe 'pagination' do
+      it 'Returns 6 items' do
+        expect(User.per_page).to eq 6
+      end
+    end
   end
 
   describe 'instance methods' do

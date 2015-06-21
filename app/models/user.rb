@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
             presence: true,
             uniqueness: { case_sensitive: false }
 
+  self.per_page = 6
+
   # query: Return a user to use as the value for current_user
   #
   # Returns a Null user if no user is found
