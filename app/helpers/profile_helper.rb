@@ -5,6 +5,10 @@ module ProfileHelper
     ''
   end
 
+  def avatar(user)
+    return image_tag user.avatar.thumb('400x200#').url if user.avatar_stored?
+  end
+
   private
 
   def edit_profile_link!

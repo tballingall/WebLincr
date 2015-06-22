@@ -5,5 +5,8 @@
     .field
       = f.label :email, t('user.fields.email')
       = f.text_field :email
+    .field
+      = f.label :avatar, t('user.fields.avatar')
+      = f.file_field :avatar
     .actions
       = f.submit t('user.profile.update_button')

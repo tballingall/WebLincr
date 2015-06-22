@@ -1,2 +1,4 @@
 %h2= t('user.profile.title', email: @user.email)
 %p= edit_profile_link(@user)
+.avatar
+  = avatar(@user)

@@ -28,6 +28,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use will_paginate for index pagination
 gem 'will_paginate'
 
+# Use dragonfly for image uploads
+gem 'dragonfly'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
