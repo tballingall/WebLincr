@@ -2,6 +2,22 @@ en:
   access:
     denied: You can't do that!
   title: Weblincr
+  album:
+    create:
+      success: Your album has been created
+    destroy: Your album has been deleted.
+    fields:
+      name: Name
+      submit: Save Album
+    errors:
+      intro: ' prohibited this album from being saved:'
+    new:
+      link: Add a new album
+      title: New album
+    update:
+      title: Change Title
+      success: Your album has been updated
+      link: Edit this album
   pages:
     homepage:
       content: I am some homepage content!

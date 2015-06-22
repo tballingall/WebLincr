@@ -2,3 +2,9 @@
 %p= edit_profile_link(@user)
 .avatar
   = avatar(@user)
+
+%p= new_album_link(@user)
+
+%ul
+  - @user.albums.each do |album|
+    %li= link_to album.name, album

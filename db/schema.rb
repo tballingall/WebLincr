@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621180959) do
+ActiveRecord::Schema.define(version: 20150622183651) do
+
+  create_table "albums", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "name"
+  end
+
+  add_index "albums", ["user_id"], name: "index_albums_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

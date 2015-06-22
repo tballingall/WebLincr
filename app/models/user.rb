@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   dragonfly_accessor :avatar
+  has_many :albums
 
   validates :email,
             format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i },

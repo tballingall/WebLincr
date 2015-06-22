@@ -40,20 +40,6 @@ class UsersController < ApplicationController
 
   private
 
-  def deny_access
-    redirect_to root_url, notice: I18n.t('access.denied')
-  end
-
-  def ensure_current_user
-    return deny_access unless current_user?(user)
-    nil
-  end
-
-  def require_login
-    return deny_access unless logged_in?
-    nil
-  end
-
   def user
     @user = User.find(params[:id])
   end

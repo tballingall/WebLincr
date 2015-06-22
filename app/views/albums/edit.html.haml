@@ -1,0 +1,9 @@
+%h2= t('album.update.title')
+#edit-album
+  = form_for [@album] do |f|
+    = display_any_errors_for(model: @album, text: t('album.errors.intro'))
+    .field
+      = f.label :name, t('album.fields.name')
+      = f.text_field :name
+    .actions
+      = f.submit t('album.fields.submit')

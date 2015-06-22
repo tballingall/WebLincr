@@ -17,6 +17,9 @@ RSpec.describe User, type: :model do
   it { expect(create(:user)).to be_valid }
 
   describe 'associations' do
+    it 'albums' do
+      expect(User.reflect_on_association(:albums).macro).to eq :has_many
+    end
   end
 
   describe 'callbacks' do

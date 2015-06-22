@@ -30,4 +30,18 @@ class ApplicationController < ActionController::Base
     current_user == user
   end
   helper_method :current_user?
+
+  def deny_access
+    redirect_to root_url, notice: I18n.t('access.denied')
+  end
+
+  def ensure_current_user
+    return deny_access unless current_user?(user)
+    nil
+  end
+
+  def require_login
+    return deny_access unless logged_in?
+    nil
+  end
 end
