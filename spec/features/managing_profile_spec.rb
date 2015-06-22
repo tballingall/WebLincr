@@ -21,11 +21,13 @@ RSpec.feature 'Credentialing', speed: 'slow' do
       expect(page).to have_content user.email
       click_link I18n.t('user.profile.edit_link')
       within('#edit-user') do
+        attach_file 'user_avatar', 'spec/support/files/professoctocat.png'
         fill_in 'user_email', with: new_email
       end
       click_button I18n.t('user.profile.update_button')
       expect(page).to have_content I18n.t('user.profile.success')
       expect(page).to have_content new_email
+      expect(page).to have_xpath "//img[contains(@src, \"professoctocat\")]"
     end
 
     context 'given bad data' do

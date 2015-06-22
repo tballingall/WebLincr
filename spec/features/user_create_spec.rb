@@ -14,11 +14,14 @@ RSpec.feature 'User create' do
         expect(page).to have_content I18n.t('user.sign_up.title')
         within('#new_user') do
           fill_in 'user_email', with: email
+          attach_file 'user_avatar', 'spec/support/files/professoctocat.png'
           fill_in 'user_password', with: password
           fill_in 'user_password_confirmation', with: password_confirmation
         end
         click_button I18n.t('user.sign_up.link')
         expect(page).to have_content I18n.t('user.sign_up.success')
+        visit user_path(User.last)
+        expect(page).to have_xpath "//img[contains(@src, \"professoctocat\")]"
       end
     end
 
