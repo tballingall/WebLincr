@@ -1,2 +1,10 @@
 %h2= "#{@album.name} by #{ link_to @album.user.email, @album.user }"
 = update_album_link(@album)
+= add_picture_link(@album)
+
+
+- @album.pictures.each do |picture|
+  = div_for(picture) do
+    = image_tag picture.thumb_url
+    = link_to picture.name, picture
+    = create_cover_link(picture)

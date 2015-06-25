@@ -5,6 +5,7 @@
 
 %p= new_album_link(@user)
 
-%ul
-  - @user.albums.each do |album|
-    %li= link_to album.name, album
+- @user.albums.each do |album|
+  = div_for(album) do
+    = link_to album.name, album
+    = image_tag album.thumb_url

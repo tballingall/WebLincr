@@ -14,6 +14,20 @@ en:
     new:
       link: Add a new album
       title: New album
+    picture:
+      add_link: Add a new picture
+      make_primary: Make Cover
+      new_title: Add a new picture
+      success: Your picture has been saved
+      errors:
+        intro: ' prohibited this picture from being saved:'
+      fields:
+        name: Name
+        description: description
+        year: Year taken
+        color: Dominant color
+        image: Upload photo
+        submit: Save this picture
     update:
       title: Change Title
       success: Your album has been updated

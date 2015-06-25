@@ -1,0 +1,21 @@
+%h2= t('album.picture.new_title')
+#new-picture
+  = form_for [@picture.album, @picture] do |f|
+    = display_any_errors_for(model: @picture, text: t('album.picture.errors.intro'))
+    .field
+      = f.label :name, t('album.picture.fields.name')
+      = f.text_field :name
+    .field
+      = f.label :color, t('album.picture.fields.color')
+      = f.text_field :color
+    .field
+      = f.label :year, t('album.picture.fields.year')
+      = f.select :year, (2000..Time.now.year).to_a, :include_blank => {:year => "Select year"}
+    .field
+      = f.label :image, t('album.picture.fields.image')
+      = f.file_field :image
+    .field
+      = f.label :description, t('album.picture.fields.description')
+      = f.text_area :description
+    .actions
+      = f.submit t('album.picture.fields.submit')
