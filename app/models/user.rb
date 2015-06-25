@@ -47,5 +47,9 @@ class User < ActiveRecord::Base
     def authenticate(_)
       false
     end
+
+    def admin?
+      false
+    end
   end
 end

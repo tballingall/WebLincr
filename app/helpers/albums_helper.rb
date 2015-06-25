@@ -1,17 +1,17 @@
 #
 module AlbumsHelper
   def update_album_link(album)
-    return update_album_link!(album) if current_user?(album.user)
+    return update_album_link!(album) if permitted?(album.user)
     ''
   end
 
   def add_picture_link(album)
-    return add_picture_link!(album) if current_user?(album.user)
+    return add_picture_link!(album) if permitted?(album.user)
     ''
   end
 
   def create_cover_link(picture)
-    return '' unless current_user?(picture.user)
+    return '' unless permitted?(picture.user)
     return '' if picture.album.cover?(picture)
     create_cover_link!(picture)
   end

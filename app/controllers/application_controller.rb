@@ -24,19 +24,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :logged_in?
 
-  def current_user?(user)
+  def permitted?(user)
     return false if user.nil?
     return false if user.is_a?(User::NullUser)
+    return true if current_user.admin?
     current_user == user
   end
-  helper_method :current_user?
+  helper_method :permitted?
 
   def deny_access
     redirect_to root_url, notice: I18n.t('access.denied')
   end
 
   def ensure_current_user
-    return deny_access unless current_user?(user)
+    return deny_access unless permitted?(user)
     nil
   end
 

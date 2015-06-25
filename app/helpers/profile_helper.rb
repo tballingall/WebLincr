@@ -6,12 +6,17 @@ module ProfileHelper
   end
 
   def edit_profile_link(user)
-    return edit_profile_link! if current_user?(user)
+    return edit_profile_link! if permitted?(user)
     ''
   end
 
   def new_album_link(user)
-    return new_album_link! if current_user?(user)
+    return new_album_link! if permitted?(user)
+    ''
+  end
+
+  def admin_flag(user)
+    return t('user.admin_flag') if user.admin?
     ''
   end
 

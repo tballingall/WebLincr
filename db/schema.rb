@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624195829) do
+ActiveRecord::Schema.define(version: 20150625060953) do
 
   create_table "albums", force: :cascade do |t|
     t.integer "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150624195829) do
     t.datetime "updated_at",      null: false
     t.string   "avatar_uid"
     t.string   "avatar_name"
+    t.boolean  "admin"
   end
 
 end

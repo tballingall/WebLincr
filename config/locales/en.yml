@@ -37,6 +37,7 @@ en:
       content: I am some homepage content!
       title: Weblincr Homepage
   user:
+    admin_flag: (An Admin)
     errors:
       email: 'is an invalid email address.'
       intro: ' prohibited this user from being saved:'
