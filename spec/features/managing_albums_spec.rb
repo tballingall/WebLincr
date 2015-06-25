@@ -2,8 +2,9 @@ require 'feature_helper'
 
 RSpec.feature 'Managing Albums', speed: 'slow' do
   context 'As an authenticated user' do
-    let(:user) { create_current_user }
+    let!(:user) { create_current_user }
     let(:album_name) { 'Summer Fun' }
+    let(:new_album_name) { 'I\'m a new album name' }
 
     scenario 'I can add a new album to my account' do
       visit user_path(user)
@@ -27,7 +28,6 @@ RSpec.feature 'Managing Albums', speed: 'slow' do
 
     context 'given a album' do
       let!(:album) { create(:album, user: user) }
-      let(:new_album_name) { 'I\'m a new album name' }
 
       scenario 'the album shows on my profile page' do
         visit user_path(user)
@@ -72,6 +72,32 @@ RSpec.feature 'Managing Albums', speed: 'slow' do
         expect(page).to_not have_link I18n.t('album.update.link')
         visit edit_album_path(album)
         expect(page).to have_content I18n.t('access.denied')
+      end
+
+      context 'given I am an admin' do
+        let!(:user) { create_current_admin }
+
+        scenario 'I can add albums to an other user\'s profile' do
+          visit user_path(other_user)
+          click_link I18n.t('album.new.link')
+          within('#new-album') do
+            fill_in 'album_name', with: album_name
+          end
+          click_button I18n.t('album.fields.submit')
+          expect(page).to have_content I18n.t('album.create.success')
+          expect(page).to have_content album_name
+        end
+
+        scenario 'I can edit anothe user\'s albums' do
+          visit album_path(album)
+          click_link I18n.t('album.update.link')
+          within('#edit-album') do
+            fill_in 'album_name', with: new_album_name
+          end
+          click_button I18n.t('album.fields.submit')
+          expect(page).to have_content I18n.t('album.update.success')
+          expect(page).to have_content new_album_name
+        end
       end
     end
   end

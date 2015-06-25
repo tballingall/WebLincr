@@ -27,6 +27,18 @@ RSpec.feature 'User create' do
         expect(page)
           .to have_content I18n.t('user.profile.title', email: @users[0].email)
       end
+
+      context 'given an admin' do
+        let!(:admin) { create(:admin) }
+
+        scenario 'I can see which users are admins' do
+          expect(page.find("##{dom_id(@users[0])}"))
+            .to_not have_content I18n.t('user.admin_flag')
+          click_link '2'
+          expect(page.find("##{dom_id(admin)}"))
+            .to have_content I18n.t('user.admin_flag')
+        end
+      end
     end
   end
 end

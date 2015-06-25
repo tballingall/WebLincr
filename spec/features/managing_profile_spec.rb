@@ -48,5 +48,19 @@ RSpec.feature 'Credentialing', speed: 'slow' do
       visit edit_user_path(other_user)
       expect(page).to have_content I18n.t('access.denied')
     end
+
+    context 'given I am an admin' do
+      let!(:user) { create_current_admin }
+
+      scenario 'I can edit other user information' do
+        visit user_path(other_user)
+        click_link I18n.t('user.profile.edit_link')
+        within('#edit-user') do
+          fill_in 'user_email', with: new_email
+        end
+        click_button I18n.t('user.profile.update_button')
+        expect(page).to have_content I18n.t('user.profile.success')
+      end
+    end
   end
 end

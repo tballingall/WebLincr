@@ -4,6 +4,7 @@ RSpec.feature 'Managing Photos', speed: 'slow' do
   context 'given I am authenticated' do
     let!(:user) { create_current_user }
     let(:picture_name) { 'Lake Sunset' }
+
     context 'and I have an album' do
       let(:album) { create(:album, user: user) }
 
@@ -52,6 +53,38 @@ RSpec.feature 'Managing Photos', speed: 'slow' do
           scenario 'I can not set an image primary' do
             visit album_path(album)
             expect(page).to_not have_link I18n.t('album.picture.make_primary')
+          end
+        end
+
+        context 'given I am an admin' do
+          let!(:user) { create_current_admin }
+
+          scenario 'I can add photos' do
+            visit album_path(album)
+            click_link I18n.t('album.picture.add_link')
+            within('#new-picture') do
+              attach_file 'picture_image',
+                          'spec/support/files/professoctocat.png'
+              fill_in 'picture_name', with: picture_name
+              fill_in 'picture_color', with: 'Blue'
+              fill_in 'picture_description', with: 'Lorem stuff'
+              select '2001', from: 'picture_year'
+            end
+            click_button I18n.t('album.picture.fields.submit')
+            expect(page).to have_content I18n.t('album.picture.success')
+          end
+
+          context 'given a photo' do
+            let!(:primary_picture) { create(:picture, album: album) }
+            let!(:picture) { create(:picture, album: album) }
+
+            scenario 'I can set an image primary' do
+              visit album_path(album)
+              within("##{dom_id(picture)}") do
+                click_link I18n.t('album.picture.make_primary')
+              end
+              expect(page).to have_content I18n.t('album.picture.success')
+            end
           end
         end
       end
