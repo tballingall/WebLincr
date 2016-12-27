@@ -1,20 +1,20 @@
 !!!
-%html
-  %head
-    %title= t('title')
-    = stylesheet_link_tag 'application', :media => 'all'
-    = javascript_include_tag 'application'
-    = csrf_meta_tags
-  %body
-    %hgroup
-      %header
-        %h1= t('title')
-      %nav
-        %ul
-          = nav_item_registration
-          = nav_item_session
-    .content
-      .notices
-        %p#notice= notice
-        %p#alert= alert
-      = yield
+
+%head
+  %title= t('title')
+  = stylesheet_link_tag 'application', :media => 'all'
+  = javascript_include_tag 'application'
+  = csrf_meta_tags
+%body
+  %hgroup
+    %header
+      %h1= t('title')
+    %nav
+      %ul
+        = nav_item_registration
+        = nav_item_session
+  .content
+    .notices
+      %p#notice= notice
+      %p#alert= alert
+    = yield
